@@ -54,10 +54,6 @@ class Eliza:
 
 eliza = Eliza()
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 @app.route("/chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message", "")
