@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import re
 import random
 from flask_cors import CORS  # Allow cross-origin requests
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -60,5 +61,8 @@ def chat():
     response = eliza.respond(user_input)
     return jsonify({"response": response})
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port, default to 5000 for local testing
+    app.run(host="0.0.0.0", port=port, debug=True)
+
