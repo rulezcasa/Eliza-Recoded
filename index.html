@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliza Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .chat-container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .message {
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px 0;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .bot {
+            background: #e6e6e6;
+            text-align: left;
+            float: left;
+            clear: both;
+        }
+
+        .user {
+            background: #d1e7fd;
+            text-align: right;
+            float: right;
+            clear: both;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            width: 20%;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Chat with Tiger</h2>
+        <div class="chat-box" id="chat-box">
+            <div class="message bot">Hello, I'm Tiger. An alter ego of your boyfriend who listens!.</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let userInput = document.getElementById("user-input").value.trim();
+            if (!userInput) return;
+
+            let chatBox = document.getElementById("chat-box");
+
+            // Display user message
+            let userMessage = document.createElement("div");
+            userMessage.classList.add("message", "user");
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+
+            // Scroll chat to the latest message
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Flask backend URL
+            let backendUrl = "http://127.0.0.1:5000/chat";  // Change this if hosted on a different server
+
+            // Send request to Flask backend
+            fetch(backendUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot");
+                botMessage.textContent = data.response;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+            // Clear input field
+            document.getElementById("user-input").value = "";
+        }
+    </script>
+</body>
+</html>
