@@ -17,5 +17,4 @@ User: I feel sad.
 ELIZA: I am sorry to hear that you feel sad. Tell me more about it.
 ```
 
-
-![Uploading Screenshot 2025-03-09 at 8.25.04 AM.png…]()
+<img width="788" alt="Screenshot 2025-03-09 at 8 25 41 AM" src="https://github.com/user-attachments/assets/5b6ab43a-9721-4146-8939-7e9f872f1c26" />
