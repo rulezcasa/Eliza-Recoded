@@ -1,10 +1,11 @@
 # ELIZA-Recoded
 
-	![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
  
 
 ## Overview
-ELIZA-Recoded is a regex-based chatbot designed for human-computer interaction. Originally developed at MIT by Joseph Weizenbaum in the 1960s, ELIZA simulates conversation by recognizing predefined patterns and responding with rule-based outputs. This is a recoded version in python just for the sake of understanding and getting hands on with regex. 
+ELIZA-Recoded is a regex-based chatbot designed for human-computer interaction. Originally developed at MIT by Joseph Weizenbaum in the 1960s, ELIZA simulates conversation by recognizing predefined patterns and responding with rule-based outputs. This is a recoded version in python just for the sake of understanding and getting hands on with 
+regex. 
 
 I'm enhancing this with patterns and responses !
 
